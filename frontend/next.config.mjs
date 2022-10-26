@@ -32,6 +32,10 @@ const nextConfig = {
         source: '/:safe([a-z0-9-]+\\:0x[a-fA-F0-9]{40})/:path*',
         destination: '/:path*?safe=:safe',
       },
+      {
+        source: '/:path*',
+        destination: "http://127.0.0.1:8080/:path*"
+      }
     ]
   },
   webpack(config) {

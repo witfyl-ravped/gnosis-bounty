@@ -2,6 +2,9 @@ import Sentry from '@/services/sentry' // needs to be imported first
 import type { ReactNode } from 'react'
 import { type ReactElement } from 'react'
 import { type AppProps } from 'next/app'
+import Script from 'next/script'
+import { useEffect, useState } from 'react'
+import { Urbit } from '@urbit/http-api'
 import Head from 'next/head'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
@@ -31,6 +34,7 @@ import useBeamer from '@/hooks/useBeamer'
 import ErrorBoundary from '@/components/common/ErrorBoundary'
 import createEmotionCache from '@/utils/createEmotionCache'
 import MetaTags from '@/components/common/MetaTags'
+
 
 const GATEWAY_URL = IS_PRODUCTION || cgwDebugStorage.get() ? GATEWAY_URL_PRODUCTION : GATEWAY_URL_STAGING
 
@@ -73,6 +77,35 @@ interface WebCoreAppProps extends AppProps {
 }
 
 const WebCoreApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: WebCoreAppProps): ReactElement => {
+  const [api, setApi] = useState<any>()
+  const [updatesSub, setUpdatesSub] = useState<any>()
+
+  useEffect(() => {
+    const api = new Urbit('', '', 'gnosis')
+    api.ship = 'mus'
+    setApi(api)
+  }, [])
+
+  useEffect(() => {
+    api?.subscribe({
+      app: 'gnosis',
+      path: '/updates',
+      event: console.log,
+      err: console.log,
+      quite: console.log,
+    })
+    .then((subId: any) => {
+      setUpdatesSub(subId)
+    })
+
+    api?.poke({
+      app: 'gnosis',
+      mark: 'gnosis-action',
+      json: {'fe-test': null}
+    })
+    .then((res: any) => console.log(res))
+  }, [api])
+
   return (
     <StoreHydrator>
       <Head>
@@ -83,7 +116,7 @@ const WebCoreApp = ({ Component, pageProps, emotionCache = clientSideEmotionCach
       <CacheProvider value={emotionCache}>
         <AppProviders>
           <CssBaseline />
-
+          <Script src='/session.js'></Script>
           <InitApp />
 
           <PageLayout>
