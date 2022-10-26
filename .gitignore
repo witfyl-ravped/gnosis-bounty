@@ -1,0 +1,10 @@
+.DS_Store
+
+frontend/node_modules
+frontend/.env
+frontend/out
+frontend/.next
+front/yarn.lock
+
+yarn.lock
+package.lock

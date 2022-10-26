@@ -1,0 +1,36 @@
+.list {
+  display: grid;
+  gap: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.icon {
+  min-width: 0;
+  margin-right: var(--space-2);
+}
+
+.listItemButton {
+  border-radius: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.list :global .MuiListItemButton-root {
+  color: var(--color-text-primary);
+}
+
+.list :global .MuiListItemButton-root:hover,
+.list :global .Mui-selected {
+  border-radius: 6px;
+  background-color: var(--color-secondary-background);
+}
+
+.listItemButton :global .beamer_icon.active {
+  top: auto;
+  left: 28px;
+  bottom: 10px;
+  width: 6px;
+  height: 6px;
+  color: transparent;
+}

@@ -1,0 +1,8 @@
+.select:after,
+.select:before {
+  display: none;
+}
+
+.select *:focus {
+  background: inherit;
+}

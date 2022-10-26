@@ -1,0 +1,58 @@
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1201;
+}
+
+.main {
+  background-color: var(--color-background-main);
+  padding-left: 230px;
+  padding-top: var(--header-height);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainNoSidebar {
+  padding-left: 0;
+}
+
+.content {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.content main {
+  padding: var(--space-3);
+}
+
+.sidebar {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  /* the z-index is required for the sidebar not to be covered by the transaction accordion on the Safe app page */
+  z-index: 1;
+  padding-top: var(--header-height);
+}
+
+@media (max-width: 900px) {
+  .main {
+    padding-left: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .main main {
+    padding: var(--space-2);
+  }
+}

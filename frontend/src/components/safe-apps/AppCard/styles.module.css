@@ -1,0 +1,21 @@
+.compactCardContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.compactShareButton {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+.truncateDescription {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
