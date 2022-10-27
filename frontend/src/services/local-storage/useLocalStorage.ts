@@ -4,7 +4,7 @@ import local from './local'
 
 const useLocalStorage = <T>(key: string, initialState: T): [T, Dispatch<SetStateAction<T>>] => {
   const [cache, setCache] = useState<T>(initialState)
-
+  
   useEffect(() => {
     const initialValue = local.getItem<T>(key)
     if (initialValue !== undefined) {

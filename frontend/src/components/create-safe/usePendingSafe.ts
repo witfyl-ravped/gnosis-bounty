@@ -20,6 +20,7 @@ export const usePendingSafe = (): [Props, Dispatch<SetStateAction<Props>>] => {
   const setPendingSafe = useCallback(
     (data: Props | ((prevData: Props) => Props)) => {
       const newData = data instanceof Function ? data(pendingSafe) : data
+      console.log('newnew: ', newData)
       return setPendingSafes((prev) => (prev ? { ...prev, [chainId]: newData } : { [chainId]: newData }))
     },
     [chainId, pendingSafe, setPendingSafes],

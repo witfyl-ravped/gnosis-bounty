@@ -5,6 +5,7 @@
 ::
 +$  action
     $%  [%fe-test ~]
+        [%add-address @t]
     ==
 ::
 +$  update

@@ -44,6 +44,9 @@
       ~&  >>  "received test poke from {<src.bowl>}"
     :_  state
     ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 42.069])]]
+    ::
+        %add-address
+      ~&  >>>  "new address {<act>}"  `state
     ==
   --
 ::

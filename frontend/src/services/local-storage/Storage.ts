@@ -1,5 +1,6 @@
 import { LS_NAMESPACE } from '@/config/constants'
 import { Errors, logError } from '@/services/exceptions'
+import api from '../../hooks/useUrbit'
 
 type BrowserStorage = typeof localStorage | typeof sessionStorage
 

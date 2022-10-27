@@ -4,7 +4,8 @@ import { type ReactElement } from 'react'
 import { type AppProps } from 'next/app'
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
-import { Urbit } from '@urbit/http-api'
+// import { Urbit } from '@urbit/http-api'
+import api_raw from '@/hooks/useUrbit'
 import Head from 'next/head'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
@@ -81,9 +82,9 @@ const WebCoreApp = ({ Component, pageProps, emotionCache = clientSideEmotionCach
   const [updatesSub, setUpdatesSub] = useState<any>()
 
   useEffect(() => {
-    const api = new Urbit('', '', 'gnosis')
-    api.ship = 'mus'
-    setApi(api)
+    // const api = new Urbit('', '', 'gnosis')
+    // api.ship = 'mus'
+    setApi(api_raw)
   }, [])
 
   useEffect(() => {
@@ -92,7 +93,7 @@ const WebCoreApp = ({ Component, pageProps, emotionCache = clientSideEmotionCach
       path: '/updates',
       event: console.log,
       err: console.log,
-      quite: console.log,
+      quit: console.log,
     })
     .then((subId: any) => {
       setUpdatesSub(subId)
@@ -103,7 +104,6 @@ const WebCoreApp = ({ Component, pageProps, emotionCache = clientSideEmotionCach
       mark: 'gnosis-action',
       json: {'fe-test': null}
     })
-    .then((res: any) => console.log(res))
   }, [api])
 
   return (

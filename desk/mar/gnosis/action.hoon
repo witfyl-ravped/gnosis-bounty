@@ -13,6 +13,7 @@
       %-  of
       :~
         [%fe-test ul]
+        [%add-address so]
       ==
     --
   --
