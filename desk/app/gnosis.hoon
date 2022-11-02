@@ -5,6 +5,11 @@
   $%  state-0
   ==
 ::
++$  state-0
+    $:  addresses=(map address=@t num=@ud)
+        safes=(map @t safe)
+    ==
+::
 +$  card  card:agent:gall
 ::
 --
@@ -41,12 +46,28 @@
     ^-  (quip card _state)
     ?-    -.act
         %fe-test
-      ~&  >>  "received test poke from {<src.bowl>}"
+      :: ~&  >>  "received test poke from {<src.bowl>}"
     :_  state
     ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 42.069])]]
     ::
         %add-address
-      ~&  >>>  "new address {<act>}"  `state
+      ?:  (~(has by addresses.state) new-address.act)
+        ~&   >>>  "{<new-address.act>} already exists"
+        `state      
+      =.  addresses.state
+      =/  num  (lent ~(tap in ~(key by addresses.state)))
+      (~(put by addresses.state) new-address.act num)
+      `state
+    ::
+        %add-safe
+      ~&  >  "found safe: {<name.act>} at: {<address.act>}"
+      ::
+      ?:  (~(has by safes.state) address.act) 
+        ~&  >>>  "{<name.act>} already exists at: {<address.act>}"
+        `state
+      =.  safes.state
+      (~(put by safes.state) address.act +.act)
+      `state
     ==
   --
 ::
@@ -55,7 +76,7 @@
   ^-  (quip card _this)
   ?+    path  !!
       [%updates ~]
-    ~&  >  "{<src.bowl>} in the house"
+    :: ~&  >  "{<src.bowl>} in the house"
     :_  this
     ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 69.420])]]
   ==

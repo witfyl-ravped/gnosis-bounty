@@ -1,10 +1,10 @@
 import { Urbit } from "@urbit/http-api";
-const api_raw = new Urbit('', '', 'gnosis')
+const api = new Urbit('', '', 'gnosis')
 
 // @ts-ignore
-api_raw.ship = 'mus'
+api.ship = 'mus'
 
 // @ts-ignore
 // window.api = api
 
-export default api_raw
+export default api

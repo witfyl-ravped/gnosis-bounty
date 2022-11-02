@@ -21,6 +21,7 @@ export const createNewSafe = async (ethersProvider: Web3Provider, props: DeployS
   const ethAdapter = createEthersAdapter(ethersProvider)
 
   const safeFactory = await SafeFactory.create({ ethAdapter })
+  console.log('create-safe sender.ts', props)
   return safeFactory.deploySafe(props)
 }
 

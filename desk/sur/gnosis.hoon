@@ -1,11 +1,14 @@
 |%
-+$  state-0
-    $:  @ud
-    ==
++$  safe
+  $:  address=@t
+      name=@t
+      owners=(list [address=@t name=@t])
+  ==
 ::
 +$  action
-    $%  [%fe-test ~]
-        [%add-address @t]
+    $%  [%add-safe safe]
+        [%fe-test ~]
+        [%add-address new-address=@t]
     ==
 ::
 +$  update
