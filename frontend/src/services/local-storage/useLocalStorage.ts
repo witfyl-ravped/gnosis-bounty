@@ -16,7 +16,6 @@ const useLocalStorage = <T>(key: string, initialState: T): [T, Dispatch<SetState
     (value: T | ((prevState: T) => T)) => {
       setCache((prevState) => {
         const newState = value instanceof Function ? value(prevState) : value
-
         if (newState !== prevState) {
           local.setItem(key, newState)
         }

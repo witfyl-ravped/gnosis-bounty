@@ -8,6 +8,7 @@
 +$  state-0
     $:  addresses=(map address=@t num=@ud)
         safes=(map @t safe)
+        =address-book
     ==
 ::
 +$  card  card:agent:gall
@@ -49,6 +50,15 @@
       :: ~&  >>  "received test poke from {<src.bowl>}"
     :_  state
     ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 42.069])]]
+    ::
+        %addressbook
+      ~&  >>  "addy {<act>}"
+      =.  address-book.state  +.act
+      `state
+    ::
+        %addedsafes
+      ~&  >>  "added safes: {<act>}"
+      `state
     ::
         %add-address
       ?:  (~(has by addresses.state) new-address.act)
