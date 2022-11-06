@@ -57,7 +57,7 @@
       `state
     ::
         %addedsafes
-      :: ~&  >>  "added safes: {<act>}"
+      :: ~&  >>  "added safes: {<+.act>}"
       =.  safes.state  +.act
       `state
     ::
@@ -88,8 +88,8 @@
   ?+    path  !!
       [%updates ~]
     :: ~&  >  "{<src.bowl>} in the house"
-    :_  this
-    ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 69.420])]]
+    `this
+    :: ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 69.420])]]
   ==
 ++  on-leave  on-leave:def
 ++  on-peek  on-peek:def

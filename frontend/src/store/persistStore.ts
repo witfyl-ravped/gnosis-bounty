@@ -30,7 +30,8 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
 
       if (sliceState) {
         // console.log(sliceName, sliceState)
-        if (sliceName === 'addedSafes') {
+        if (sliceName === 'addedSafes' || sliceName === 'addressBook') {  //addressBook
+
           // console.log(sliceName, sliceState)
 
           // let urbitObject: any = {}
@@ -61,29 +62,29 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
           //   '0xedA8FA3F3bC39bC186a368Cb8CD07AB247F66665': "witfyl"
           // }
 
-          const testSafes = {
-            5: {
-            '0x81CB38A876eC4c13C65123Ee3EDC6480aC72DF90': {
-              ethbalance: "0",
-              owners: [
-                {value: '0xedA8FA3F3bC39bC186a368Cb8CD07AB247F66665'},
-                {value: '0xbA7893f0849cdD8EAB21F98bFfAF4289bc574097'}],
-              threshold: 1
-            },
-            '0xEF97297fACC8C72FF9D5364Ab031e1e0fC9dE88D': {
-              ethbalance: "0",
-              owners: [
-                {value: '0xedA8FA3F3bC39bC186a368Cb8CD07AB247F66665'},
-                {value: '0x810d07f6635928337ff62d40A42DBff9998c1007'}],
-              threshold: 1
-            },
-            }
-          }
+          // const testSafes = {
+          //   5: {
+          //   '0x81CB38A876eC4c13C65123Ee3EDC6480aC72DF90': {
+          //     ethbalance: "0",
+          //     owners: [
+          //       {value: '0xedA8FA3F3bC39bC186a368Cb8CD07AB247F66665'},
+          //       {value: '0xbA7893f0849cdD8EAB21F98bFfAF4289bc574097'}],
+          //     threshold: 1
+          //   },
+          //   '0xEF97297fACC8C72FF9D5364Ab031e1e0fC9dE88D': {
+          //     ethbalance: "0",
+          //     owners: [
+          //       {value: '0xedA8FA3F3bC39bC186a368Cb8CD07AB247F66665'},
+          //       {value: '0x810d07f6635928337ff62d40A42DBff9998c1007'}],
+          //     threshold: 1
+          //   },
+          //   }
+          // }
 
           let urbitObject: any = {}
-          urbitObject[sliceName.toLowerCase()]= testSafes // sliceState
+          urbitObject[sliceName.toLowerCase()]= sliceState // testSafes
           console.log(urbitObject)
-          console.log({[sliceName.toLowerCase()]: sliceState})
+          // console.log({[sliceName.toLowerCase()]: sliceState})
           api?.poke({
             app: 'gnosis',
             mark: 'gnosis-action',
