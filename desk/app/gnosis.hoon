@@ -7,7 +7,7 @@
 ::
 +$  state-0
     $:  addresses=(map address=@t num=@ud)
-        safes=(map @t safe)
+        =safes
         =address-book
     ==
 ::
@@ -52,32 +52,33 @@
     ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 42.069])]]
     ::
         %addressbook
-      ~&  >>  "addy {<act>}"
+      :: ~&  >>  "addy {<act>}"
       =.  address-book.state  +.act
       `state
     ::
         %addedsafes
-      ~&  >>  "added safes: {<act>}"
+      :: ~&  >>  "added safes: {<act>}"
+      =.  safes.state  +.act
       `state
     ::
-        %add-address
-      ?:  (~(has by addresses.state) new-address.act)
-        ~&   >>>  "{<new-address.act>} already exists"
-        `state      
-      =.  addresses.state
-      =/  num  (lent ~(tap in ~(key by addresses.state)))
-      (~(put by addresses.state) new-address.act num)
-      `state
+      ::   %add-address
+      :: ?:  (~(has by addresses.state) new-address.act)
+      ::   ~&   >>>  "{<new-address.act>} already exists"
+      ::   `state      
+      :: =.  addresses.state
+      :: =/  num  (lent ~(tap in ~(key by addresses.state)))
+      :: (~(put by addresses.state) new-address.act num)
+      :: `state
     ::
-        %add-safe
-      ~&  >  "found safe: {<name.act>} at: {<address.act>}"
-      ::
-      ?:  (~(has by safes.state) address.act) 
-        ~&  >>>  "{<name.act>} already exists at: {<address.act>}"
-        `state
-      =.  safes.state
-      (~(put by safes.state) address.act +.act)
-      `state
+      ::   %add-safe
+      :: ~&  >  "found safe: {<name.act>} at: {<address.act>}"
+      :: ::
+      :: ?:  (~(has by safes.state) address.act) 
+      ::   ~&  >>>  "{<name.act>} already exists at: {<address.act>}"
+      ::   `state
+      :: =.  safes.state
+      :: (~(put by safes.state) address.act +.act)
+      :: `state
     ==
   --
 ::

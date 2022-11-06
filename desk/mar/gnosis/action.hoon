@@ -7,7 +7,6 @@
     =,  dejs:format
     |=  jon=json
     %-  action
-    ~&  >  jon
     =<  (fe-action jon)
     |%
     ++  fe-action

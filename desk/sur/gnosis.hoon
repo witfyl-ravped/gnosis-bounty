@@ -16,9 +16,9 @@
 +$  action
     $%  [%addedsafes safes]
         [%addressbook address-book]
-        [%add-safe safe]
         [%fe-test ~]
-        [%add-address new-address=@t]
+        :: [%add-safe safe]        
+        :: [%add-address new-address=@t]
     ==
 ::
 +$  update

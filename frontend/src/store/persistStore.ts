@@ -81,7 +81,7 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
           }
 
           let urbitObject: any = {}
-          urbitObject[sliceName.toLowerCase()]= sliceState //testSafes
+          urbitObject[sliceName.toLowerCase()]= testSafes // sliceState
           console.log(urbitObject)
           console.log({[sliceName.toLowerCase()]: sliceState})
           api?.poke({
