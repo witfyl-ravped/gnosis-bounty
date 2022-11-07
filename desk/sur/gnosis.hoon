@@ -1,11 +1,15 @@
 |%
 +$  chain-id  @t
 ::
++$  address  @t
+::
++$  name  @t
+::
 +$  safe-contents  [threshold=@ud ethbalance=@t owners=(list address=@t)]
 ::
 +$  safes  (map chain-id (map address=@t safe-contents))
 ::
-+$  address-book  (map chain-id (map address=@t name=@t))
++$  address-book  (map chain-id (map address name))
 ::
 +$  safe
   $:  address=@t
@@ -22,6 +26,8 @@
     ==
 ::
 +$  update
-    $%  [%test-num num=@ud]
+    $%  [%address-book =address-book]
+        [%added-safes =safes]
+        [%test-num num=@ud]
     ==
 --

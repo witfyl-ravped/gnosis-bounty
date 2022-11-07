@@ -6,8 +6,7 @@
   ==
 ::
 +$  state-0
-    $:  addresses=(map address=@t num=@ud)
-        =safes
+    $:  =safes
         =address-book
     ==
 ::
@@ -88,8 +87,10 @@
   ?+    path  !!
       [%updates ~]
     :: ~&  >  "{<src.bowl>} in the house"
-    `this
-    :: ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 69.420])]]
+    :_  this
+    :~  [%give %fact ~[/updates] %gnosis-update !>([%address-book address-book.state])]
+        [%give %fact ~[/updates] %gnosis-update !>([%added-safes safes.state])]
+    ==
   ==
 ++  on-leave  on-leave:def
 ++  on-peek  on-peek:def
