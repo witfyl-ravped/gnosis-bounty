@@ -25,7 +25,7 @@
     ==
   ++  parse-added-safes
     |=  =safes
-    =-  'addedSafes'^o/-
+    =-  (frond 'addedSafes'^o/-)
     %-  ~(run by safes)
     |=  safe=(map @t [@ud @t (list @t)])
     :-  %o
@@ -35,7 +35,19 @@
     :~  'ethBalance'^s/e
         'threshold'^(numb t)
         'owners'^a/(turn o :(corl (cury frond %value) ^json (lead %s)))
-    ==
+    ==  
+    :: |=  =safes
+    :: =-  'addedSafes'^o/-
+    :: %-  ~(run by safes)
+    :: |=  safe=(map @t [@ud @t (list @t)])
+    :: :-  %o
+    :: %-  ~(run by safe)
+    :: |=  [t=@ud e=@t o=(list @t)]
+    :: %-  pairs
+    :: :~  'ethBalance'^s/e
+    ::     'threshold'^(numb t)
+    ::     'owners'^a/(turn o :(corl (cury frond %value) ^json (lead %s)))
+    :: ==
   ++  parse-address-book
     |=  book=address-book
     %-  frond
