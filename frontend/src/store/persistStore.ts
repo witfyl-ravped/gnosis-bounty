@@ -30,7 +30,7 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
 
       if (sliceState) {
         // console.log(sliceName, sliceState)
-        if (sliceName === 'addedSafes' || sliceName === 'addressBook') {  //addressBook
+        if (sliceName === 'addedSafes' || sliceName === 'addressBook') {
 
           // console.log(sliceName, sliceState)
 
@@ -83,7 +83,7 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
 
           let urbitObject: any = {}
           urbitObject[sliceName.toLowerCase()]= sliceState // testSafes
-          console.log(urbitObject)
+          // console.log(urbitObject)
           // console.log({[sliceName.toLowerCase()]: sliceState})
           api?.poke({
             app: 'gnosis',

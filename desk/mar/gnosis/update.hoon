@@ -17,6 +17,8 @@
       (parse-address-book address-book.upd)
     %added-safes
       (parse-added-safes safes.upd)
+    %owned-safes
+      (parse-owned-safes owned-safes.upd)
     %test-num
       %-  pairs
       :~
@@ -30,30 +32,28 @@
     |=  safe=(map @t [@ud @t (list @t)])
     :-  %o
     %-  ~(run by safe)
-    |=  [t=@ud e=@t o=(list @t)]
+    |=  [thresh=@ud ethebal=@t owners=(list @t)]
     %-  pairs
-    :~  'ethBalance'^s/e
-        'threshold'^(numb t)
-        'owners'^a/(turn o :(corl (cury frond %value) ^json (lead %s)))
+    :~  'ethBalance'^s/ethebal
+        'threshold'^(numb thresh)
+        'owners'^a/(turn owners :(corl (cury frond %value) ^json (lead %s)))
     ==  
-    :: |=  =safes
-    :: =-  'addedSafes'^o/-
-    :: %-  ~(run by safes)
-    :: |=  safe=(map @t [@ud @t (list @t)])
-    :: :-  %o
-    :: %-  ~(run by safe)
-    :: |=  [t=@ud e=@t o=(list @t)]
-    :: %-  pairs
-    :: :~  'ethBalance'^s/e
-    ::     'threshold'^(numb t)
-    ::     'owners'^a/(turn o :(corl (cury frond %value) ^json (lead %s)))
-    :: ==
+  ::
   ++  parse-address-book
     |=  book=address-book
-    %-  frond
-    =-  address-book+o/-
+    =-  (frond address-book+o/-)
     %-  ~(run by book)
     |=(buk=(map @t @t) o/(~(run by buk) (lead %s))) 
+  ::
+  ++  parse-owned-safes
+    |=  =owned-safes
+    =-  (frond 'ownedSafes'^o/-)
+    %-  ~(run by owned-safes)
+    |=  owned=(map @t (list @t))
+    :-  %o
+    %-  ~(run by owned)
+    |=  [safs=(list address=@t)]
+    a/(turn safs :(corl ^json (lead %s)))
   --
 ++  grad  %noun
 --

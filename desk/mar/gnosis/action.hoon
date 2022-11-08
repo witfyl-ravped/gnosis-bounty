@@ -13,6 +13,7 @@
       %-  of
       :~  [%addedsafes (om (om parse-added-safes))]
           [%addressbook (om (om so))]
+          [%ownedsafes (om (om (ar so)))]
           [%fe-test ul]
       ==
     ++  parse-added-safes

@@ -28,6 +28,7 @@ const useOwnedSafes = (): OwnedSafesCache['walletAddress'] => {
   useEffect(() => {
     if (!ownedSafes || !walletAddress || !chainId) return
 
+    console.log(CACHE_KEY, )
     // api.poke({app: 'gnosis', mark: 'gnosis-action', json: {'add-address': walletAddress}})
 
     setOwnedSafesCache((prev) => ({

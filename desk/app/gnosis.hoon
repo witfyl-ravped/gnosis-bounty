@@ -8,6 +8,7 @@
 +$  state-0
     $:  =safes
         =address-book
+        =owned-safes
     ==
 ::
 +$  card  card:agent:gall
@@ -60,6 +61,10 @@
       =.  safes.state  +.act
       `state
     ::
+        %ownedsafes
+      =.  owned-safes.state  +.act
+      `state
+    ::
       ::   %add-address
       :: ?:  (~(has by addresses.state) new-address.act)
       ::   ~&   >>>  "{<new-address.act>} already exists"
@@ -90,6 +95,7 @@
     :_  this
     :~  [%give %fact ~[/updates] %gnosis-update !>([%address-book address-book.state])]
         [%give %fact ~[/updates] %gnosis-update !>([%added-safes safes.state])]
+        [%give %fact ~[/updates] %gnosis-update !>([%owned-safes owned-safes.state])]
     ==
   ==
 ++  on-leave  on-leave:def

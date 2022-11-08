@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useState, useCallback, useEffect } from 'react'
+import api from '@/hooks/useUrbit'
 import local from './local'
 
 const useLocalStorage = <T>(key: string, initialState: T): [T, Dispatch<SetStateAction<T>>] => {
@@ -19,7 +20,11 @@ const useLocalStorage = <T>(key: string, initialState: T): [T, Dispatch<SetState
         if (newState !== prevState) {
           local.setItem(key, newState)
         }
-
+        console.log('in LS')
+        if(key === 'ownedSafes') {
+          api?.poke({app: 'gnosis', mark: 'gnosis-action', json: {ownedsafes: newState}})
+          console.log('Writing to ownedSafes: ', newState)
+        }
         return newState
       })
     },
