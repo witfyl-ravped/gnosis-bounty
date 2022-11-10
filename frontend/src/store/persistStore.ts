@@ -1,19 +1,28 @@
 import type { Middleware, PreloadedState } from '@reduxjs/toolkit'
-
+import { useEffect } from 'react'
 import local from '@/services/local-storage/local'
 import type { RootState } from '@/store'
 import api from '@/hooks/useUrbit'
-import { consoleSandbox } from '@sentry/utils'
 
 type PreloadedRootState = PreloadedState<RootState>
 
 export const getPreloadedState = <K extends keyof PreloadedRootState>(sliceNames: K[]): PreloadedRootState => {
   return sliceNames.reduce<PreloadedRootState>((preloadedState, sliceName) => {
     const sliceState = local.getItem<PreloadedRootState[K]>(sliceName)
+    
+    api?.subscribe({
+      app: 'gnosis',
+      path: '/updates',
+      event: console.log,
+      err: console.log,
+      quit: console.log,
+    })
 
     if (sliceState) {
       preloadedState[sliceName] = sliceState
     }
+
+    console.log('preloaded state: ', preloadedState)
 
     return preloadedState
   }, {})
@@ -30,9 +39,11 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
 
       if (sliceState) {
         // console.log(sliceName, sliceState)
-        if (sliceName === 'addedSafes' || sliceName === 'addressBook') {
-
-          // console.log(sliceName, sliceState)
+        if (sliceName === 'addedSafes' || 
+            sliceName === 'addressBook' || 
+            sliceName === 'session' ||
+            sliceName === 'cookies'
+        ) {
 
           // let urbitObject: any = {}
           // let addresses: any = []
@@ -81,10 +92,12 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
           //   }
           // }
 
+          if (sliceName === 'cookies'){
+            console.log(sliceName, sliceState)
+          }
+          
           let urbitObject: any = {}
           urbitObject[sliceName.toLowerCase()]= sliceState // testSafes
-          // console.log(urbitObject)
-          // console.log({[sliceName.toLowerCase()]: sliceState})
           api?.poke({
             app: 'gnosis',
             mark: 'gnosis-action',

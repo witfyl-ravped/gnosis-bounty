@@ -20,7 +20,6 @@ const useLocalStorage = <T>(key: string, initialState: T): [T, Dispatch<SetState
         if (newState !== prevState) {
           local.setItem(key, newState)
         }
-        console.log('in LS')
         if(key === 'ownedSafes') {
           api?.poke({app: 'gnosis', mark: 'gnosis-action', json: {ownedsafes: newState}})
           console.log('Writing to ownedSafes: ', newState)

@@ -13,6 +13,12 @@
 ::
 +$  owned-safes  (map address (map chain-id (list address)))
 ::
++$  cookies  [updates=? necessary=? analytics=?]
+::
++$  session  [@t (map chain-id address)]
+::
++$  preloaded-state  [safes address-book session]
+::
 +$  safe
   $:  address=@t
       name=@t
@@ -22,16 +28,19 @@
 +$  action
     $%  [%addedsafes safes]
         [%addressbook address-book]
+        [%cookies cookies]
         [%ownedsafes owned-safes]
+        [%session session]
         [%fe-test ~]
-        :: [%add-safe safe]        
-        :: [%add-address new-address=@t]
     ==
 ::
 +$  update
-    $%  [%address-book =address-book]
+    $%  [%preloaded-state =preloaded-state]
+        [%address-book =address-book]
         [%added-safes =safes]
+        [%cookies =cookies]
         [%owned-safes =owned-safes]
+        [%session =session]
         [%test-num num=@ud]
     ==
 --

@@ -1,38 +1,28 @@
 /-  *gnosis
+=/  state-0
+  $:  =safes
+      =address-book
+      =cookies
+      =owned-safes
+      =session
+  ==
 =,  enjs:format
-|_  upd=update
+|_  stat=state-0
 ++  grab
   |%
-  ++  noun  update
+  ++  noun  state-0
   --
 ++  grow
   |%
-  ++  noun  upd
-  ++  json
-    ?-  -.upd
-    %address-book
-      (parse-address-book address-book.upd)
-    %added-safes
-      (parse-added-safes safes.upd)
-    %owned-safes
-      (parse-owned-safes owned-safes.upd)
-    %session
-      (parse-session session.upd)
-    %preloaded-state
-      (make-state-object preloaded-state.upd)
-    %test-num
-      %-  pairs
-      :~
-        ['confirmation' (tape "Successful sub {<num.upd>}")]
-      ==
-    ==
+  ++  noun  stat
+  ++  json  (make-state-object stat)
   ++  make-state-object
-    |=  stat=preloaded-state
+    |=  stat=state-0
     %-  pairs
     :~  
-        'addedSafes'^(parse-added-safes -.stat)
-        'addressBook'^(parse-address-book +<.stat)
-        'session'^(parse-session +>.stat)
+        'addedSafes'^(parse-added-safes safes.stat)
+        'addressBook'^(parse-address-book address-book.stat)
+        'session'^(parse-session session.stat)
     ==
   ++  parse-added-safes
     |=  =safes

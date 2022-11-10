@@ -6,10 +6,12 @@
   ==
 ::
 +$  state-0
-    $:  =safes
-        =address-book
-        =owned-safes
-    ==
+  $:  =safes
+      =address-book
+      =cookies
+      =owned-safes
+      =session
+  ==
 ::
 +$  card  card:agent:gall
 ::
@@ -61,10 +63,19 @@
       =.  safes.state  +.act
       `state
     ::
+        %cookies
+      ::  ~&  >  [%cookies-yum +.act]
+      =.  cookies.state  +.act
+      `state
+    ::
         %ownedsafes
       =.  owned-safes.state  +.act
       `state
     ::
+        %session
+      :: ~&  >  "got some session info: {<act>}"
+      =.  session.state  +.act
+      `state
       ::   %add-address
       :: ?:  (~(has by addresses.state) new-address.act)
       ::   ~&   >>>  "{<new-address.act>} already exists"
@@ -93,9 +104,11 @@
       [%updates ~]
     :: ~&  >  "{<src.bowl>} in the house"
     :_  this
-    :~  [%give %fact ~[/updates] %gnosis-update !>([%address-book address-book.state])]
-        [%give %fact ~[/updates] %gnosis-update !>([%added-safes safes.state])]
-        [%give %fact ~[/updates] %gnosis-update !>([%owned-safes owned-safes.state])]
+    :~  [%give %fact ~[/updates] gnosis-state-0+!>(state)]
+        :: [%give %fact ~[/updates] %gnosis-update !>([%address-book address-book.state])]
+        :: [%give %fact ~[/updates] %gnosis-update !>([%added-safes safes.state])]
+        :: [%give %fact ~[/updates] %gnosis-update !>([%owned-safes owned-safes.state])]
+        :: [%give %fact ~[/updates] %gnosis-update !>([%session session.state])]
     ==
   ==
 ++  on-leave  on-leave:def

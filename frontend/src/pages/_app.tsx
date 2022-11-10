@@ -4,8 +4,6 @@ import { type ReactElement } from 'react'
 import { type AppProps } from 'next/app'
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
-// import { Urbit } from '@urbit/http-api'
-import api from '@/hooks/useUrbit'
 import Head from 'next/head'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
@@ -78,53 +76,6 @@ interface WebCoreAppProps extends AppProps {
 }
 
 const WebCoreApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: WebCoreAppProps): ReactElement => {
-  // const [api, setApi] = useState<any>()
-  // const [updatesSub, setUpdatesSub] = useState<any>()
-
-  // useEffect(() => {
-  //   setApi(api)
-  // }, [])
-
-  useEffect(() => {
-    api?.subscribe({
-      app: 'gnosis',
-      path: '/updates',
-      event: console.log,
-      err: console.log,
-      quit: console.log,
-    })
-    // .then((subId: any) => {
-    //   setUpdatesSub(subId)
-    // })
-
-    api?.poke({
-      app: 'gnosis',
-      mark: 'gnosis-action',
-      json: {'fe-test': null}
-    })
-  }, [api])
-
-
-  // const testSafeData: any = {
-  //   'add-safe': {
-  //     value: '0x5F2da2F413f0d0C045BA63f779797F59efe93C79',
-  //     name: 'test-safe-name',
-  //     'owners': [{
-  //       value: '0xedA8FA3F3bC39bC186a368Cb8CD07AB247F66665',
-  //       name: 'witfyl'
-  //     },
-  //     {
-  //       name: 'rabsef',
-  //       value: '0xb09CEF1f834a7ba370C7E283330FC20B2A8bA376'
-  //     }]
-  //   }
-  // }
-
-  // api?.poke({
-  //   app: 'gnosis', 
-  //   mark: 'gnosis-action', 
-  //   json: testSafeData})
-
   return (
     <StoreHydrator>
       <Head>
