@@ -11,6 +11,7 @@
       =cookies
       =owned-safes
       =session
+      =settings
   ==
 ::
 +$  card  card:agent:gall
@@ -76,6 +77,10 @@
       :: ~&  >  "got some session info: {<act>}"
       =.  session.state  +.act
       `state
+        %settings
+      :: ~&  >  [%settings-nice +.act]
+      =.  settings.state  +.act
+      `state
       ::   %add-address
       :: ?:  (~(has by addresses.state) new-address.act)
       ::   ~&   >>>  "{<new-address.act>} already exists"
@@ -104,12 +109,11 @@
       [%updates ~]
     :: ~&  >  "{<src.bowl>} in the house"
     :_  this
-    :~  [%give %fact ~[/updates] gnosis-state-0+!>(state)]
+    [%give %fact ~[/updates] gnosis-state-0+!>(state)]~
         :: [%give %fact ~[/updates] %gnosis-update !>([%address-book address-book.state])]
         :: [%give %fact ~[/updates] %gnosis-update !>([%added-safes safes.state])]
         :: [%give %fact ~[/updates] %gnosis-update !>([%owned-safes owned-safes.state])]
         :: [%give %fact ~[/updates] %gnosis-update !>([%session session.state])]
-    ==
   ==
 ++  on-leave  on-leave:def
 ++  on-peek  on-peek:def

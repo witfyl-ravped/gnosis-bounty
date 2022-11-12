@@ -42,7 +42,8 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
         if (sliceName === 'addedSafes' || 
             sliceName === 'addressBook' || 
             sliceName === 'session' ||
-            sliceName === 'cookies'
+            sliceName === 'cookies' ||
+            sliceName == 'settings' 
         ) {
 
           // let urbitObject: any = {}
@@ -91,13 +92,10 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
           //   },
           //   }
           // }
-
-          if (sliceName === 'cookies'){
-            console.log(sliceName, sliceState)
-          }
           
           let urbitObject: any = {}
           urbitObject[sliceName.toLowerCase()]= sliceState // testSafes
+
           api?.poke({
             app: 'gnosis',
             mark: 'gnosis-action',

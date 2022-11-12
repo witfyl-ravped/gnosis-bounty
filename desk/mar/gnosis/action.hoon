@@ -16,7 +16,20 @@
           [%cookies parse-cookies]
           [%ownedsafes (om (om (ar so)))]
           [%session parse-session]
+          [%settings parse-settings]
           [%fe-test ul]
+      ==
+    ++  parse-settings
+      %-  ot
+      :~  [%currency so]
+          [%'shortName' parse-shortname]
+          [%theme (om bo)]
+      ==
+    ++  parse-shortname
+      %-  ot
+      :~  [%show bo]
+          [%copy bo]
+          [%qr bo]
       ==
     ++  parse-cookies
       %-  ot

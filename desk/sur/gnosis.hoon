@@ -1,23 +1,24 @@
 |%
 +$  chain-id  @t
-::
 +$  address  @t
-::
 +$  name  @t
 ::
-+$  safe-contents  [threshold=@ud ethbalance=@t owners=(list address=@t)]
++$  cookies  [updates=? necessary=? analytics=?]
++$  session  [@t (map chain-id address)]
 ::
-+$  safes  (map chain-id (map address=@t safe-contents))
++$  safes  
+  (map chain-id (map address=@t safe-contents))
+::
++$  safe-contents  
+  [threshold=@ud ethbalance=@t owners=(list address=@t)]
 ::
 +$  address-book  (map chain-id (map address name))
 ::
-+$  owned-safes  (map address (map chain-id (list address)))
++$  owned-safes  
+  (map address (map chain-id (list address)))
 ::
-+$  cookies  [updates=? necessary=? analytics=?]
-::
-+$  session  [@t (map chain-id address)]
-::
-+$  preloaded-state  [safes address-book session]
++$  settings
+  [currency=@t shortname=[copy=? qr=? show=?] theme=(map @t ?)]
 ::
 +$  safe
   $:  address=@t
@@ -31,16 +32,11 @@
         [%cookies cookies]
         [%ownedsafes owned-safes]
         [%session session]
+        [%settings settings]
         [%fe-test ~]
     ==
 ::
 +$  update
-    $%  [%preloaded-state =preloaded-state]
-        [%address-book =address-book]
-        [%added-safes =safes]
-        [%cookies =cookies]
-        [%owned-safes =owned-safes]
-        [%session =session]
-        [%test-num num=@ud]
+    $%  [%test-num num=@ud]
     ==
 --
