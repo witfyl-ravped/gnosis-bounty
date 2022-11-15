@@ -57,12 +57,10 @@ const persistedSlices: (keyof PreloadedState<RootState>)[] = [
 const middleware = [persistState(persistedSlices), txHistoryMiddleware, txQueueMiddleware, addedSafesMiddleware]
 
 export const getPersistedState = () => {
-  console.log('get pl: ', getPreloadedState(persistedSlices))
   return getPreloadedState(persistedSlices)
 }
 
 const hydrationReducer: typeof rootReducer = (state, action) => {
-  console.log('hyd red: ', state, action)
   if (action.type === HYDRATE_ACTION) {
     return {
       ...state,

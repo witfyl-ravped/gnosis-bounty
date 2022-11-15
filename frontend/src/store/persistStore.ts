@@ -7,57 +7,18 @@ import api from '@/hooks/useUrbit'
 type PreloadedRootState = PreloadedState<RootState>
 
 export const getPreloadedState = <K extends keyof PreloadedRootState>(sliceNames: K[]): PreloadedRootState => {
-  // console.log('pslices: ', sliceNames)
+  console.log('pslices: ', sliceNames)
   return sliceNames.reduce<PreloadedRootState>((preloadedState, sliceName) => {
     const sliceState = local.getItem<PreloadedRootState[K]>(sliceName)
 
-    // if (sliceState) {
-    //   preloadedState[sliceName] = sliceState
-    // }
+    if (sliceState) {
+      preloadedState[sliceName] = sliceState
+    }
     
-    // console.log('prestate: ', preloadedState)
+    console.log('prestate: ', preloadedState)  
 
-    let urbState: any
-    const subEvent = (stateObj: any) => {
-      urbState = stateObj
-      // console.log('gall: ', urbState)
-      return urbState
-    }
-  
-    const fakeState = {
-      addedSafes: {},
-      addressBook: {},
-      cookies: {analytics: true, necessary: true, updates: true},
-      pendingTxs: {},
-      safeApps: {},
-      session: {lastChainId: "5", lastSafeAddress: {5: "0xyeah"}},
-      settings: {currency: 'usd', shortName: {copy: true, qr: true, show: true}, theme: {darkMode: false}}
-    }
-  
-    async function loadUrbit() {
-      // console.log('loadurb called')
-      await api?.subscribe({
-        app: 'gnosis',
-        path: '/updates',
-        event: subEvent,
-        err: console.log,
-        quit: console.log,
-      })
-  
-      // console.log('finished sub')
-      // console.log(urbState)
-      // return urbState
-    }
-  
-    loadUrbit()
-  
-    // @ts-ignore
-    return urbState    
-
-
-    // return preloadedState
+    return preloadedState
   }, {})
-
 }
 
 export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]): Middleware<{}, RootState> => {

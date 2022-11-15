@@ -5,6 +5,8 @@ import type { Store } from 'redux'
 import type { RootState } from '@/store'
 import { getPersistedState } from '@/store'
 
+import api from '@/hooks/useUrbit'
+
 export const HYDRATE_ACTION = '@@HYDRATE'
 
 type Props = { children: React.ReactElement | React.ReactElement[]; initialState?: RootState }
@@ -16,19 +18,29 @@ export const createStoreHydrator = (makeStore: (initialState?: Partial<RootState
     constructor(props: Props) {
       super(props)
       this.store = makeStore(props.initialState)
-      console.log('storeHydrator store: ', this.store)
     }
 
     componentDidMount() {
-      console.log('hyd per: ', getPersistedState())
-      this.store.dispatch({
-        type: HYDRATE_ACTION,
-        payload: getPersistedState(),
-      })
+      
+      const subEvent = (stateObj: any) => {
+        // console.log('gall: ', stateObj)
+        this.store.dispatch({
+          type: HYDRATE_ACTION,
+          payload: stateObj,
+        })
+      }
+      
+        api?.subscribe({
+          app: 'gnosis',
+          path: '/updates',
+          event: subEvent,
+          err: console.log,
+          quit: console.log,
+        })
+      
     }
 
     render() {
-      console.log('hyd store: ', this.store, 'hyd child: ', this.props.children)
       return <Provider store={this.store}>{this.props.children}</Provider>
     }
   }
