@@ -9,6 +9,8 @@
   $:  =safes
       =address-book
       =cookies
+      =pending-txs
+      =safe-apps
       =owned-safes
       =session
       =settings

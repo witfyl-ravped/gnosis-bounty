@@ -20,6 +20,10 @@
 +$  settings
   [currency=@t shortname=[copy=? qr=? show=?] theme=(map @t ?)]
 ::
++$  pending-txs  (map @t @t)
+::
++$  safe-apps  (map @t @t)
+::
 +$  safe
   $:  address=@t
       name=@t

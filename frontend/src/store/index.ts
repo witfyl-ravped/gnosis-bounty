@@ -24,6 +24,7 @@ import { cookiesSlice } from './cookiesSlice'
 import { popupSlice } from './popupSlice'
 import { spendingLimitSlice } from './spendingLimitsSlice'
 import { safeAppsSlice } from './safeAppsSlice'
+import api  from '@/hooks/useUrbit'
 
 const rootReducer = combineReducers({
   [chainsSlice.name]: chainsSlice.reducer,
@@ -56,10 +57,12 @@ const persistedSlices: (keyof PreloadedState<RootState>)[] = [
 const middleware = [persistState(persistedSlices), txHistoryMiddleware, txQueueMiddleware, addedSafesMiddleware]
 
 export const getPersistedState = () => {
+  console.log('get pl: ', getPreloadedState(persistedSlices))
   return getPreloadedState(persistedSlices)
 }
 
 const hydrationReducer: typeof rootReducer = (state, action) => {
+  console.log('hyd red: ', state, action)
   if (action.type === HYDRATE_ACTION) {
     return {
       ...state,
@@ -67,6 +70,45 @@ const hydrationReducer: typeof rootReducer = (state, action) => {
     }
   }
   return rootReducer(state, action)
+}
+
+const returnUrbState = () => {
+  let urbState: any
+  const subEvent = (stateObj: any) => {
+    urbState = stateObj
+    // console.log('gall: ', urbState)
+    return urbState
+  }
+
+  const fakeState = {
+    addedSafes: {},
+    addressBook: {},
+    cookies: {analytics: true, necessary: true, updates: true},
+    pendingTxs: {},
+    safeApps: {},
+    session: {lastChainId: "5", lastSafeAddress: {5: "0xyeah"}},
+    settings: {currency: 'usd', shortName: {copy: true, qr: true, show: true}, theme: {darkMode: false}}
+  }
+
+  async function loadUrbit() {
+    // console.log('loadurb called')
+    await api?.subscribe({
+      app: 'gnosis',
+      path: '/updates',
+      event: subEvent,
+      err: console.log,
+      quit: console.log,
+    })
+
+    // console.log('finished sub')
+    // console.log(urbState)
+    // return urbState
+  }
+
+  loadUrbit()
+
+  // @ts-ignore
+  return urbState 
 }
 
 const makeStore = (initialState?: Record<string, any>) => {

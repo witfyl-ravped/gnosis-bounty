@@ -15,11 +15,12 @@ export const createStoreHydrator = (makeStore: (initialState?: Partial<RootState
 
     constructor(props: Props) {
       super(props)
-
       this.store = makeStore(props.initialState)
+      console.log('storeHydrator store: ', this.store)
     }
 
     componentDidMount() {
+      console.log('hyd per: ', getPersistedState())
       this.store.dispatch({
         type: HYDRATE_ACTION,
         payload: getPersistedState(),
@@ -27,6 +28,7 @@ export const createStoreHydrator = (makeStore: (initialState?: Partial<RootState
     }
 
     render() {
+      console.log('hyd store: ', this.store, 'hyd child: ', this.props.children)
       return <Provider store={this.store}>{this.props.children}</Provider>
     }
   }
