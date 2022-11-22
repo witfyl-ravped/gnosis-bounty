@@ -32,7 +32,6 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
       const sliceState = state[sliceName]
 
       if (sliceState) {
-        // console.log(sliceName, sliceState)
         if (sliceName === 'addedSafes' || 
             sliceName === 'addressBook' || 
             sliceName === 'session' ||
@@ -42,17 +41,11 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
           
           let urbitObject: any = {}
           urbitObject[sliceName.toLowerCase()]= sliceState // testSafes
-          if (sliceName === 'settings') {
-            // console.log('poking settings: ', sliceState)
-          }
           api?.poke({
             app: 'gnosis',
             mark: 'gnosis-action',
             json: urbitObject
           })
-        }
-        if (sliceName === 'settings') {
-          // console.log('ls setting: ', sliceName, sliceState)
         }
         local.setItem(sliceName, sliceState)
       } else {

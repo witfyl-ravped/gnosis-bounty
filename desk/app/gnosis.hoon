@@ -9,9 +9,6 @@
   $:  =safes
       =address-book
       =cookies
-      =pending-txs
-      =safe-apps
-      =owned-safes
       =session
       =settings
   ==
@@ -72,7 +69,7 @@
       `state
     ::
         %ownedsafes
-      =.  owned-safes.state  +.act
+      :: =.  owned-safes.state  +.act
       `state
     ::
         %session

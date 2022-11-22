@@ -3,9 +3,6 @@
   $:  =safes
       =address-book
       =cookies
-      =pending-txs
-      =safe-apps
-      =owned-safes
       =session
       =settings
   ==
@@ -26,26 +23,8 @@
         'addedSafes'^(parse-added-safes safes.stat)
         'addressBook'^(parse-address-book address-book.stat)
         'cookies'^(parse-cookies cookies.stat)
-        'pendingTxs'^(parse-pending pending-txs.stat)
-        'safeApps'^(parse-apps safe-apps.stat)
         'session'^(parse-session session.stat)
         'settings'^(parse-settings settings.stat)
-    ==
-  ++  parse-apps
-    |=  apps=safe-apps
-    :-  %o
-    %-  ~(run by apps)
-    |=  [fake=@t]
-    %-  pairs
-    :~  'fake-app'^s/fake
-    ==  
-  ++  parse-pending
-    |=  pend=pending-txs
-    :-  %o
-    %-  ~(run by pend)
-    |=  [fake=@t]
-    %-  pairs
-    :~  'fake-name'^s/fake
     ==
   ++  parse-settings
     |=  setg=settings

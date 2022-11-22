@@ -23,7 +23,7 @@ export const createStoreHydrator = (makeStore: (initialState?: Partial<RootState
     componentDidMount() {
       
       const subEvent = (stateObj: any) => {
-        // console.log('gall: ', stateObj)
+        console.log('gall: ', stateObj)
         this.store.dispatch({
           type: HYDRATE_ACTION,
           payload: stateObj,

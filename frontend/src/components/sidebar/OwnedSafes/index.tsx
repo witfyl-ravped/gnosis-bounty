@@ -13,10 +13,12 @@ const OwnedSafes = (): ReactElement | null => {
     return null
   }
 
+  console.log('have ownedsafes: ', ownedSafesOnChain)
+
   return (
     <>
       <Typography variant="body2" display="inline" color="primary.light" textAlign="center" mt={1} mb={2}>
-        Safes owned on {chain.chainName}
+        Safes pwned on {chain.chainName}
       </Typography>
 
       <List sx={{ py: 0 }}>
