@@ -3,7 +3,12 @@ import withBundleAnalyzer from '@next/bundle-analyzer'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  target: 'serverless',
+  basePath: '/apps/gnosis',
   compress: false,
+  generateBuildId: async () => {
+    return 'glob-friendly-id'
+  },
   reactStrictMode: false,
   eslint: {
     dirs: ['src'],
@@ -31,11 +36,11 @@ const nextConfig = {
     return [
       {
         source: '/:safe([a-z0-9-]+\\:0x[a-fA-F0-9]{40})/:path*',
-        destination: '/:path*?safe=:safe',
+        destination: '/apps/gnosis/:path*?safe=:safe',
       },
       {
         source: '/:path*',
-        destination: "http://127.0.0.1:8080/:path*"
+        destination: "http://127.0.0.1:8080/apps/gnosis/:path*"
       }
     ]
   },

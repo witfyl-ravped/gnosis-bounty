@@ -1,15 +1,12 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import type { Store } from 'redux'
-
 import type { RootState } from '@/store'
-import { getPersistedState } from '@/store'
-
 import api from '@/hooks/useUrbit'
 
 export const HYDRATE_ACTION = '@@HYDRATE'
 
-type Props = { children: React.ReactElement | React.ReactElement[]; initialState?: RootState }
+type Props = { children: React.ReactElement | React.ReactElement[]; initialState?: RootState; api?: any }
 
 export const createStoreHydrator = (makeStore: (initialState?: Partial<RootState>) => Store<RootState>) => {
   return class HydrationWrapper extends React.Component<Props> {
@@ -21,23 +18,20 @@ export const createStoreHydrator = (makeStore: (initialState?: Partial<RootState
     }
 
     componentDidMount() {
-      
       const subEvent = (stateObj: any) => {
-        console.log('gall: ', stateObj)
         this.store.dispatch({
           type: HYDRATE_ACTION,
           payload: stateObj,
         })
       }
-      
-        api?.subscribe({
-          app: 'gnosis',
-          path: '/updates',
-          event: subEvent,
-          err: console.log,
-          quit: console.log,
-        })
-      
+
+      api?.subscribe({
+        app: 'gnosis',
+        path: '/updates',
+        event: subEvent,
+        err: console.log,
+        quit: console.log,
+      })
     }
 
     render() {

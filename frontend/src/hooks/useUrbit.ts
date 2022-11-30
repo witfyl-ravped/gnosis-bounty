@@ -1,8 +1,12 @@
-import { Urbit } from "@urbit/http-api";
+import { Urbit } from '@urbit/http-api'
 const api = new Urbit('', '', 'gnosis')
 
-// @ts-ignore
-api.ship = 'mus'
+if (typeof window !== 'undefined') {
+  // @ts-ignore
+  console.log('inside useUrbit: ', window.ship)
+  // @ts-ignore
+  api.ship = window.ship
+}
 
 // @ts-ignore
 // window.api = api

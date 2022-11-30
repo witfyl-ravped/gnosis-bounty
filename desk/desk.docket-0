@@ -1,0 +1,10 @@
+:~
+  title+'Gnosis Frontend'
+  info+'YTMND'
+  color+0xd9.b06d
+  version+[0 1 0]
+  website+'https://urbit.org'
+  license+'MIT'
+  base+'gnosis'
+  glob-http+['https://sfo3.digitaloceanspaces.com/witfylbucks/witfyl-ravped/2022.11.28..03.37.25-glob-0v4.4m2kn.oog1m.lerq6.resab.mhjh1.glob' 0v4.4m2kn.oog1m.lerq6.resab.mhjh1]
+==

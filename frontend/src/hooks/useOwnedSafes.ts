@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { getOwnedSafes, type OwnedSafes } from '@gnosis.pm/safe-react-gateway-sdk'
-import api from './useUrbit'
 import useChainId from '@/hooks/useChainId'
 import useLocalStorage from '@/services/local-storage/useLocalStorage'
 import useWallet from '@/hooks/wallets/useWallet'
@@ -28,6 +27,7 @@ const useOwnedSafes = (): OwnedSafesCache['walletAddress'] => {
   useEffect(() => {
     if (!ownedSafes || !walletAddress || !chainId) return
 
+    // Experimenting with not sending derived state to Gall
     // api.poke({app: 'gnosis', mark: 'gnosis-action', json: {'add-address': walletAddress}})
 
     setOwnedSafesCache((prev) => ({

@@ -3,7 +3,6 @@ import type { ReactNode } from 'react'
 import { type ReactElement } from 'react'
 import { type AppProps } from 'next/app'
 import Script from 'next/script'
-import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
@@ -34,9 +33,7 @@ import ErrorBoundary from '@/components/common/ErrorBoundary'
 import createEmotionCache from '@/utils/createEmotionCache'
 import MetaTags from '@/components/common/MetaTags'
 
-
 const GATEWAY_URL = IS_PRODUCTION || cgwDebugStorage.get() ? GATEWAY_URL_PRODUCTION : GATEWAY_URL_STAGING
-
 const InitApp = (): null => {
   setGatewayBaseUrl(GATEWAY_URL)
   usePathRewrite()
@@ -77,28 +74,29 @@ interface WebCoreAppProps extends AppProps {
 
 const WebCoreApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: WebCoreAppProps): ReactElement => {
   return (
-    <StoreHydrator>
-      <Head>
-        <title key="default-title">Safe</title>
-        <MetaTags prefetchUrl={GATEWAY_URL} />
-      </Head>
+    <>
+      <Script src="/session.js" />
+      <StoreHydrator>
+        <Head>
+          <title key="default-title">Safe</title>
+          <MetaTags prefetchUrl={GATEWAY_URL} />
+        </Head>
+        <CacheProvider value={emotionCache}>
+          <AppProviders>
+            <CssBaseline />
+            <InitApp />
 
-      <CacheProvider value={emotionCache}>
-        <AppProviders>
-          <CssBaseline />
-          <Script src='/session.js'></Script>
-          <InitApp />
+            <PageLayout>
+              <Component {...pageProps} />
+            </PageLayout>
 
-          <PageLayout>
-            <Component {...pageProps} />
-          </PageLayout>
+            <CookieBanner />
 
-          <CookieBanner />
-
-          <Notifications />
-        </AppProviders>
-      </CacheProvider>
-    </StoreHydrator>
+            <Notifications />
+          </AppProviders>
+        </CacheProvider>
+      </StoreHydrator>
+    </>
   )
 }
 
