@@ -49,55 +49,30 @@
     ^-  (quip card _state)
     ?-    -.act
         %fe-test
-      :: ~&  >>  "received test poke from {<src.bowl>}"
     :_  state
     ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 42.069])]]
     ::
         %addressbook
-      :: ~&  >>  "addy {<act>}"
       =.  address-book.state  +.act
       `state
     ::
         %addedsafes
-      :: ~&  >>  "added safes: {<+.act>}"
       =.  safes.state  +.act
       `state
     ::
         %cookies
-      ::  ~&  >  [%cookies-yum +.act]
       =.  cookies.state  +.act
       `state
     ::
         %ownedsafes
-      :: =.  owned-safes.state  +.act
       `state
     ::
         %session
-      :: ~&  >  "got some session info: {<act>}"
       =.  session.state  +.act
       `state
         %settings
-      :: ~&  >  [%settings-nice +.act]
       =.  settings.state  +.act
       `state
-      ::   %add-address
-      :: ?:  (~(has by addresses.state) new-address.act)
-      ::   ~&   >>>  "{<new-address.act>} already exists"
-      ::   `state      
-      :: =.  addresses.state
-      :: =/  num  (lent ~(tap in ~(key by addresses.state)))
-      :: (~(put by addresses.state) new-address.act num)
-      :: `state
-    ::
-      ::   %add-safe
-      :: ~&  >  "found safe: {<name.act>} at: {<address.act>}"
-      :: ::
-      :: ?:  (~(has by safes.state) address.act) 
-      ::   ~&  >>>  "{<name.act>} already exists at: {<address.act>}"
-      ::   `state
-      :: =.  safes.state
-      :: (~(put by safes.state) address.act +.act)
-      :: `state
     ==
   --
 ::
@@ -106,13 +81,8 @@
   ^-  (quip card _this)
   ?+    path  !!
       [%updates ~]
-    :: ~&  >  "{<src.bowl>} in the house"
     :_  this
     [%give %fact ~[/updates] gnosis-state-0+!>(state)]~
-        :: [%give %fact ~[/updates] %gnosis-update !>([%address-book address-book.state])]
-        :: [%give %fact ~[/updates] %gnosis-update !>([%added-safes safes.state])]
-        :: [%give %fact ~[/updates] %gnosis-update !>([%owned-safes owned-safes.state])]
-        :: [%give %fact ~[/updates] %gnosis-update !>([%session session.state])]
   ==
 ++  on-leave  on-leave:def
 ++  on-peek  on-peek:def

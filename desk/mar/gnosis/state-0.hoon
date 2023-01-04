@@ -67,15 +67,6 @@
     %-  ~(run by book)
     |=(buk=(map @t @t) o/(~(run by buk) (lead %s))) 
   ::
-::   ++  parse-owned-safes
-::     |=  =owned-safes
-::     =-  (frond 'ownedSafes'^o/-)
-::     %-  ~(run by owned-safes)
-::     |=  owned=(map @t (list @t))
-::     :-  %o
-::     %-  ~(run by owned)
-::     |=  [safs=(list address=@t)]
-::     a/(turn safs :(corl ^json (lead %s)))
   ++  parse-session
     |=  s=session
     %-  pairs
