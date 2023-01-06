@@ -18,7 +18,7 @@ const usePathRewrite = () => {
     if (!safe) return
 
     // Move the Safe address to the path
-    let newPath = router.pathname.replace(/^\//, `/${safe}/`)
+    let newPath = `/apps/safe${router.pathname.replace(/^\//, `/${safe}/`)}`
 
     // Preserve other query params
     if (Object.keys(restQuery).length) {

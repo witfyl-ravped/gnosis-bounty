@@ -41,7 +41,7 @@ export const useTransactionType = (tx: TransactionSummary): TxType => {
     switch (tx.txInfo.type) {
       case TransactionInfoType.CREATION: {
         return {
-          icon: toAddress?.logoUri || '/images/transactions/settings.svg',
+          icon: toAddress?.logoUri || '/apps/safe/images/transactions/settings.svg',
           text: 'Safe created',
         }
       }
@@ -49,7 +49,9 @@ export const useTransactionType = (tx: TransactionSummary): TxType => {
         const isSendTx = tx.txInfo.direction === TransferDirection.OUTGOING
 
         return {
-          icon: isSendTx ? '/images/transactions/outgoing.svg' : '/images/transactions/incoming.svg',
+          icon: isSendTx
+            ? '/apps/safe/images/transactions/outgoing.svg'
+            : '/apps/safe/images/transactions/incoming.svg',
           text: isSendTx ? (isTxQueued(tx.txStatus) ? 'Send' : 'Sent') : 'Received',
         }
       }
@@ -59,21 +61,21 @@ export const useTransactionType = (tx: TransactionSummary): TxType => {
         const isDeleteGuard = tx.txInfo.settingsInfo?.type === SettingsInfoType.DELETE_GUARD
 
         return {
-          icon: '/images/transactions/settings.svg',
+          icon: '/apps/safe/images/transactions/settings.svg',
           text: isDeleteGuard ? 'deleteGuard' : tx.txInfo.dataDecoded.method,
         }
       }
       case TransactionInfoType.CUSTOM: {
         if (isModuleExecutionInfo(tx.executionInfo)) {
           return {
-            icon: toAddress?.logoUri || '/images/transactions/settings.svg',
+            icon: toAddress?.logoUri || '/apps/safe/images/transactions/settings.svg',
             text: toAddress?.name || '',
           }
         }
 
         if (isCancellationTxInfo(tx.txInfo)) {
           return {
-            icon: '/images/transactions/circle-cross-red.svg',
+            icon: '/apps/safe/images/transactions/circle-cross-red.svg',
             text: 'On-chain rejection',
           }
         }
@@ -86,13 +88,13 @@ export const useTransactionType = (tx: TransactionSummary): TxType => {
         }
 
         return {
-          icon: toAddress?.logoUri || '/images/transactions/custom.svg',
+          icon: toAddress?.logoUri || '/apps/safe/images/transactions/custom.svg',
           text: addressBookName || toAddress?.name || 'Contract interaction',
         }
       }
       default: {
         return {
-          icon: '/images/transactions/custom.svg',
+          icon: '/apps/safe/images/transactions/custom.svg',
           text: addressBookName || 'Contract interaction',
         }
       }

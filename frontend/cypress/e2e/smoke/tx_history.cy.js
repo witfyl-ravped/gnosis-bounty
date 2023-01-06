@@ -1,13 +1,13 @@
 const SAFE = 'gor:0x97d314157727D517A706B5D08507A1f9B44AaaE9'
 
-const INCOMING = '/images/transactions/incoming.svg'
-const OUTGOING = '/images/transactions/outgoing.svg'
-const CONTRACT_INTERACTION = '/images/transactions/custom.svg'
+const INCOMING = '/apps/safe/images/transactions/incoming.svg'
+const OUTGOING = '/apps/safe/images/transactions/outgoing.svg'
+const CONTRACT_INTERACTION = '/apps/safe/images/transactions/custom.svg'
 
 describe('Transaction history', () => {
   before(() => {
     // Go to the test Safe transaction history
-    cy.visit(`/${SAFE}/transactions/history`, { failOnStatusCode: false })
+    cy.visit(`/apps/safe/${SAFE}/transactions/history`, { failOnStatusCode: false })
     cy.contains('button', 'Accept selection').click()
   })
 

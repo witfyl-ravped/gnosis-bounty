@@ -1,4 +1,4 @@
-/-  *gnosis
+/-  *safe
 |_  act=action
 ++  grab
   |%

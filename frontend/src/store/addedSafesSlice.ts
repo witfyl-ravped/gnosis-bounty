@@ -41,8 +41,6 @@ export const addedSafesSlice = createSlice({
     addOrUpdateSafe: (state, { payload }: PayloadAction<{ safe: SafeInfo }>) => {
       const { chainId, address, owners, threshold } = payload.safe
 
-      // api.poke({app: 'gnosis', mark: 'gnosis-action', json: {'add-safe': {testAddress}}})
-
       state[chainId] ??= {}
       state[chainId][address.value] = {
         // Keep balance

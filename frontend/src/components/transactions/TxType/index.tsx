@@ -15,7 +15,7 @@ const TxType = ({ tx }: TxTypeProps) => {
     <Box className={css.txType}>
       <ImageFallback
         src={type.icon}
-        fallbackSrc="/images/transactions/custom.svg"
+        fallbackSrc="apps/safe/images/transactions/custom.svg"
         alt="Transaction type"
         width={16}
         height={16}

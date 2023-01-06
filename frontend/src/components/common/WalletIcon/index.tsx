@@ -3,12 +3,12 @@ import metamaskIcon from '@web3-onboard/injected-wallets/dist/icons/metamask'
 import coinbaseIcon from '@web3-onboard/coinbase/dist/icon'
 import keystoneIcon from '@web3-onboard/keystone/dist/icon'
 import walletConnectIcon from '@web3-onboard/walletconnect/dist/icon'
-import trezorIcon from '@web3-onboard/trezor/dist/icon'
+// import trezorIcon from '@web3-onboard/trezor/dist/icon'
 import ledgerIcon from '@web3-onboard/ledger/dist/icon'
 import tallyhoIcon from '@web3-onboard/tallyho/dist/icon'
 import fortmaticIcon from '@web3-onboard/fortmatic/dist/icon'
 import portisIcon from '@web3-onboard/portis/dist/icon'
-import torusIcon from '@web3-onboard/torus/dist/icon'
+// import torusIcon from '@web3-onboard/torus/dist/icon'
 
 import { WALLET_KEYS } from '@/hooks/wallets/wallets'
 import pairingIcon from '@/services/pairing/icon'
@@ -30,13 +30,13 @@ const WALLET_ICONS: Props = {
   [WALLET_KEYS.INJECTED]: metamaskIcon,
   [WALLET_KEYS.KEYSTONE]: keystoneIcon,
   [WALLET_KEYS.WALLETCONNECT]: walletConnectIcon,
-  [WALLET_KEYS.TREZOR]: trezorIcon,
+  // [WALLET_KEYS.TREZOR]: trezorIcon,
   [WALLET_KEYS.LEDGER]: ledgerIcon,
   [WALLET_KEYS.PAIRING]: pairingIcon,
   [WALLET_KEYS.TALLYHO]: tallyhoIcon,
   [WALLET_KEYS.FORTMATIC]: fortmaticIcon,
   [WALLET_KEYS.PORTIS]: portisIcon,
-  [WALLET_KEYS.TORUS]: torusIcon,
+  // [WALLET_KEYS.TORUS]: torusIcon,
 }
 
 // Labels may differ from ALL_WALLET_KEYS

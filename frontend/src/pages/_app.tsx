@@ -13,7 +13,7 @@ import { IS_PRODUCTION, GATEWAY_URL_STAGING, GATEWAY_URL_PRODUCTION } from '@/co
 import { StoreHydrator } from '@/store'
 import PageLayout from '@/components/common/PageLayout'
 import useLoadableStores from '@/hooks/useLoadableStores'
-import usePathRewrite from '@/hooks/usePathRewrite'
+// import usePathRewrite from '@/hooks/usePathRewrite'
 import { useInitOnboard } from '@/hooks/wallets/useOnboard'
 import { useInitWeb3 } from '@/hooks/wallets/useInitWeb3'
 import { useInitSafeCoreSDK } from '@/hooks/coreSDK/useInitSafeCoreSDK'
@@ -36,7 +36,7 @@ import MetaTags from '@/components/common/MetaTags'
 const GATEWAY_URL = IS_PRODUCTION || cgwDebugStorage.get() ? GATEWAY_URL_PRODUCTION : GATEWAY_URL_STAGING
 const InitApp = (): null => {
   setGatewayBaseUrl(GATEWAY_URL)
-  usePathRewrite()
+  // usePathRewrite()
   useStorageMigration()
   useGtm()
   useInitSession()

@@ -1,4 +1,4 @@
-/-  *gnosis
+/-  *safe
 =,  enjs:format
 |_  upd=update
 ++  grab

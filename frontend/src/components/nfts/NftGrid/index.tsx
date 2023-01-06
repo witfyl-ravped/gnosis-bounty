@@ -28,7 +28,7 @@ const NftGrid = ({
                 <ImageFallback
                   src={logoUri}
                   alt={`${tokenName} collection icon`}
-                  fallbackSrc="/images/common/nft-placeholder.png"
+                  fallbackSrc="/apps/safe/images/common/nft-placeholder.png"
                   height="45px"
                 />
               </Grid>

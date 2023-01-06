@@ -36,8 +36,8 @@ export const persistState = <K extends keyof PreloadedRootState>(sliceNames: K[]
           let urbitObject: any = {}
           urbitObject[sliceName.toLowerCase()] = sliceState // testSafes
           api?.poke({
-            app: 'gnosis',
-            mark: 'gnosis-action',
+            app: 'safe',
+            mark: 'safe-action',
             json: urbitObject,
           })
         }

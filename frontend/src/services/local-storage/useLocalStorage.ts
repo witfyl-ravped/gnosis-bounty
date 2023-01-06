@@ -18,11 +18,6 @@ const useLocalStorage = <T>(key: string, initialState: T): [T, Dispatch<SetState
         if (newState !== prevState) {
           local.setItem(key, newState)
         }
-        // Experimenting with not sending derived state to Gall
-        // if(key === 'ownedSafes') {
-        //   api?.poke({app: 'gnosis', mark: 'gnosis-action', json: {ownedsafes: newState}})
-        //   console.log('Writing to ownedSafes: ', newState)
-        // }
         return newState
       })
     },

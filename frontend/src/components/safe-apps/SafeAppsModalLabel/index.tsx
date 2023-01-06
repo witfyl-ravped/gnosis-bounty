@@ -4,7 +4,7 @@ import { Typography, Box } from '@mui/material'
 import css from './styles.module.css'
 import ImageFallback from '@/components/common/ImageFallback'
 
-const APP_LOGO_FALLBACK_IMAGE = '/images/apps/apps-icon.svg'
+const APP_LOGO_FALLBACK_IMAGE = '/apps/safe/images/apps/apps-icon.svg'
 
 const SafeAppsModalLabel = ({ app }: { app?: SafeAppData }) => {
   if (!app) {

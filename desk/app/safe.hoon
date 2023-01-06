@@ -1,4 +1,4 @@
-/-  *gnosis
+/-  *safe
 /+  default-agent, dbug
 |%
 +$  versioned-state
@@ -39,7 +39,7 @@
   |^
   =^  cards  state
   ?+    mark  !!
-      %gnosis-action
+      %safe-action
     (handle-frontend-poke !<(action vase))
   ==
   [cards this]
@@ -50,7 +50,7 @@
     ?-    -.act
         %fe-test
     :_  state
-    ~[[%give %fact ~[/updates] %gnosis-update !>([%test-num 42.069])]]
+    ~[[%give %fact ~[/updates] %safe-update !>([%test-num 42.069])]]
     ::
         %addressbook
       =.  address-book.state  +.act
@@ -82,7 +82,7 @@
   ?+    path  !!
       [%updates ~]
     :_  this
-    [%give %fact ~[/updates] gnosis-state-0+!>(state)]~
+    [%give %fact ~[/updates] safe-state-0+!>(state)]~
   ==
 ++  on-leave  on-leave:def
 ++  on-peek  on-peek:def

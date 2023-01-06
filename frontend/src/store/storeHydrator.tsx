@@ -26,7 +26,7 @@ export const createStoreHydrator = (makeStore: (initialState?: Partial<RootState
       }
 
       api?.subscribe({
-        app: 'gnosis',
+        app: 'safe',
         path: '/updates',
         event: subEvent,
         err: console.log,

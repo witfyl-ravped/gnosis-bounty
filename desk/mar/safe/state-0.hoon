@@ -1,4 +1,4 @@
-/-  *gnosis
+/-  *safe
 =/  state-0
   $:  =safes
       =address-book

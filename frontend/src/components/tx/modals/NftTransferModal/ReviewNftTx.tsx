@@ -30,7 +30,7 @@ const ReviewNftTx = ({ params, onSubmit }: ReviewNftTxProps): ReactElement => {
       <Box display="flex" flexDirection="column" alignItems="center">
         <ImageFallback
           src={token.imageUri || token.logoUri}
-          fallbackSrc="/images/common/nft-placeholder.png"
+          fallbackSrc="/apps/safe/images/common/nft-placeholder.png"
           alt={token.tokenSymbol}
           height={60}
           style={{ borderRadius: 4, marginBottom: 'var(--space-1)' }}

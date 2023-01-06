@@ -13,7 +13,7 @@ const TokenIcon = ({
   size?: number
   fallbackSrc?: string
 }): ReactElement | null => {
-  const FALLBACK_ICON = '/images/common/token-placeholder.svg'
+  const FALLBACK_ICON = '/apps/safe/images/common/token-placeholder.svg'
 
   return !logoUri ? null : (
     <ImageFallback
